@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Validación de Documento Oficial</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; background-color: #f1f5f9; display: flex; justify-content: center; padding: 20px; margin: 0; color: #1e293b; }
+        
+        /* Pantalla de Carga */
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #f1f5f9; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #cbd5e1; border-top: 4px solid #003366; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loading-text { font-size: 13px; color: #003366; font-weight: bold; text-align: center; line-height: 1.5; }
+        
+        .container { background-color: #ffffff; width: 100%; max-width: 600px; border-top: 6px solid #003366; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); padding: 30px; box-sizing: border-box; display: none; }
+        .header { text-align: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; margin-bottom: 20px; }
+        .title { font-size: 18px; font-weight: bold; color: #003366; margin-bottom: 5px; }
+        .subtitle { font-size: 13px; color: #64748b; font-weight: bold; text-transform: uppercase; }
+        .status-box { background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; padding: 15px; text-align: center; font-weight: bold; border-radius: 4px; margin-bottom: 25px; font-size: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 13px; }
+        th, td { padding: 12px; border: 1px solid #cbd5e1; text-align: left; }
+        th { background-color: #f8fafc; color: #475569; width: 35%; text-transform: uppercase; font-size: 11px; }
+        td { font-weight: bold; }
+        .footer { font-size: 10px; color: #64748b; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 15px; line-height: 1.5; }
+        .hash { font-family: monospace; word-break: break-all; color: #003366; }
+    </style>
+    <script>
+        (function() { const auth = "santiagocentro.github.io"; const cur = window.location.hostname; if (cur !== auth && cur !== "localhost" && cur !== "127.0.0.1" && window.location.protocol !== "file:") { document.body.innerHTML="ACCESO RESTRINGIDO"; window.location.replace("https://" + auth + window.location.pathname); } })();
+        document.oncontextmenu = () => false;
+    </script>
+</head>
+<body>
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loading-text">BUSCANDO EN BASE DE DATOS<br>I. MUNICIPALIDAD DE SANTIAGO...</div>
+    </div>
+
+    <div class="container" id="main-content">
+        <div class="header">
+            <div class="title">I. MUNICIPALIDAD DE SANTIAGO</div>
+            <div class="subtitle">Certificado de Permiso de Circulación Electrónico</div>
+        </div>
+        <div class="status-box">✓ DOCUMENTO VÁLIDO Y VIGENTE</div>
+        <table>
+            <tr><th>Placa Patente</th><td style="font-size:18px; color:#003366;">ZT3690-3</td></tr>
+            <tr><th>Folio Emisión</th><td>SC-0000010150</td></tr>
+            <tr><th>Propietario Legal</th><td>JOSE RICHARD CUADROS LA TORRE</td></tr>
+            <tr><th>Fecha de Emisión</th><td>30 MAR 2026</td></tr>
+            <tr><th>Fecha de Vencimiento</th><td style="color:#dc2626;">31 MAR 2027</td></tr>
+        </table>
+        <div class="footer">
+            Firma Electrónica Avanzada (SHA-256)<br>
+            <span class="hash">7ba97c371aedc9eb3bd89a1ed7ac260477c0599b97c790fcefa24ede57780f7f</span><br><br>
+            Documento consultado en línea el <span id="clock"></span>
+        </div>
+    </div>
+    
+    <script>
+        setTimeout(() => {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('clock').innerText = new Date().toLocaleString();
+        }, 2000);
+    </script>
+</body>
+</html>
